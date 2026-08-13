@@ -1,0 +1,1359 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AURAMED PHARMACY</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Professional Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .icon-btn.img-btn {
+      padding: 10px;
+    }
+
+    .icon-btn.img-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .ip {
+      box-shadow:
+        0 0 0 2px #7b2cbf,
+        0 0 14px rgba(123,44,191,.7);
+    }
+
+    .oc {
+      box-shadow:
+        0 0 0 2px #ff7900,
+        0 0 14px rgba(255,121,0,.75);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .card {
+      width: min(560px, 96vw);
+      background: #0f0f0f;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 14px 36px rgba(0,0,0,.6);
+      text-align: center;
+    }
+
+    #orangeNumber,
+    #orangeNumber a {
+      color: #d4af37 !important;
+      text-decoration: none !important;
+    }
+
+    .pointsBox.show {
+      display: flex !important;
+      animation: pointsPop .55s cubic-bezier(.2,.9,.2,1) both;
+    }
+
+    .pointsIcon {
+      position: relative;
+      overflow: visible;
+    }
+
+    .pointsIcon::after {
+      content: "";
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 2px solid rgba(212,175,55,.25);
+      opacity: 0;
+      transform: scale(.7);
+      animation: ringPulse .9s ease-out both;
+    }
+
+    .pointsIcon::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      box-shadow:
+        0 -34px 0 0 rgba(212,175,55,.95),
+        24px -24px 0 0 rgba(212,175,55,.8),
+        34px 0 0 0 rgba(212,175,55,.7),
+        24px 24px 0 0 rgba(212,175,55,.8),
+        0 34px 0 0 rgba(212,175,55,.95),
+        -24px 24px 0 0 rgba(212,175,55,.8),
+        -34px 0 0 0 rgba(212,175,55,.7),
+        -24px -24px 0 0 rgba(212,175,55,.8);
+      opacity: 0;
+      animation: sparkBurst .55s ease-out .05s both;
+    }
+
+    .pointsValue {
+      animation: valueSlide .55s ease-out .05s both;
+    }
+
+    @keyframes pointsPop {
+      0% {
+        transform: translateY(10px) scale(.85);
+        opacity: 0;
+      }
+
+      65% {
+        transform: translateY(-2px) scale(1.03);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes ringPulse {
+      0% {
+        opacity: 0;
+        transform: scale(.7);
+      }
+
+      35% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.25);
+      }
+    }
+
+    @keyframes sparkBurst {
+      0% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(.6) rotate(0deg);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(1.05) rotate(18deg);
+      }
+    }
+
+    @keyframes valueSlide {
+      0% {
+        transform: translateY(8px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .logo {
+      width: 350px;
+      height: 350px;
+      padding: 6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow:
+        0 0 0 2px #d4af37,
+        0 10px 35px rgba(212,175,55,.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pharmacy-name {
+      font-size: 28px;
+      font-weight: 900;
+      color: #d4af37;
+      margin: 6px 0 0;
+      line-height: 1.1;
+    }
+
+    .pharmacy-sub {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .point-section {
+      display: flex;
+      justify-content: center;
+      margin: 6px 0 18px;
+    }
+
+    .icons-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .icon-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 72px;
+    }
+
+    .icon-btn {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #0f0f0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #fff;
+      border: 0;
+      cursor: pointer;
+      transition: .25s ease;
+      text-decoration: none;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    .icon-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .fb {
+      box-shadow:
+        0 0 0 2px #1877f2,
+        0 0 14px rgba(24,119,242,.7);
+    }
+
+    .ig {
+      box-shadow:
+        0 0 0 2px #e1306c,
+        0 0 14px rgba(225,48,108,.7);
+    }
+
+    .tt {
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 14px rgba(255,255,255,.6);
+    }
+
+    .wa {
+      box-shadow:
+        0 0 0 2px #25d366,
+        0 0 14px rgba(37,211,102,.7);
+    }
+
+    .maps {
+      box-shadow:
+        0 0 0 2px #4285f4,
+        0 0 14px rgba(66,133,244,.7);
+    }
+
+    .review {
+      box-shadow:
+        0 0 0 2px #fbbc05,
+        0 0 14px rgba(251,188,5,.7);
+    }
+
+    .point {
+      box-shadow:
+        0 0 0 2px #8a2be2,
+        0 0 16px rgba(138,43,226,.8);
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 9999;
+    }
+
+    .modalBox {
+      width: 100%;
+      max-width: 420px;
+      background: #0f0f0f;
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      text-align: right;
+    }
+
+    .modalHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .modalHeader h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      color: #d4af37;
+    }
+
+    .modalHeader button {
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .modalBox label {
+      display: block;
+      font-size: 13px;
+      color: #ccc;
+      margin-top: 8px;
+    }
+
+    .modalBox input {
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+      margin: 8px 0 2px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #0a0a0a;
+      color: #fff;
+      outline: none;
+    }
+
+    .modalBox input:focus {
+      border-color: rgba(212,175,55,.7);
+      box-shadow: 0 0 0 3px rgba(212,175,55,.15);
+    }
+
+    .checkBtn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 12px;
+      border: 0;
+      background: #d4af37;
+      color: #000;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .pointsBox {
+      margin-top: 14px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+    }
+
+    .pointsIcon {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: #d4af37;
+      box-shadow:
+        0 0 0 2px #d4af37,
+        0 0 20px rgba(212,175,55,.9);
+    }
+
+    .pointsValue {
+      font-size: 30px;
+      font-weight: 900;
+      color: #d4af37;
+      line-height: 1;
+    }
+
+    .pointsValue .unit {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ccc;
+      margin-right: 6px;
+    }
+
+    .errorMsg {
+      margin-top: 10px;
+      color: #ffb4b4;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .infoBox {
+      margin-top: 10px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      background: #0a0a0a;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        display: block;
+        padding: 12px;
+      }
+
+      .card {
+        width: 100%;
+      }
+
+      .logo {
+        width: min(350px, 82vw);
+        height: min(350px, 82vw);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="card">
+
+    <div class="header">
+
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+      </div>
+
+      <h1 class="pharmacy-name">AURAMED</h1>
+
+      <p class="pharmacy-sub">
+        PHARMACY
+      </p>
+
+    </div>
+
+    <div class="point-section">
+
+      <div class="icon-wrap">
+
+        <button
+          class="icon-btn point"
+          id="openPoint"
+          type="button"
+          title="Point"
+        >
+
+          <i class="fa-solid fa-gift"></i>
+
+        </button>
+
+        <span class="icon-label">
+          Point
+        </span>
+
+      </div>
+
+    </div>
+
+    <section class="icons-grid">
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn fb"
+          href="https://www.facebook.com/share/1DapVYzYy4/"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <i class="fa-brands fa-facebook-f"></i>
+
+        </a>
+
+        <span class="icon-label">
+          Facebook
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn ig"
+          href="https://www.instagram.com/aura.medpharmacy?igsh=MTVkNjMzZWtnOXA1NQ=="
+          target="_blank"
+          rel="noopener"
+        >
+
+          <i class="fa-brands fa-instagram"></i>
+
+        </a>
+
+        <span class="icon-label">
+          Instagram
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn tt"
+          href="https://www.tiktok.com/@auramed.pharmacy"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <i class="fa-brands fa-tiktok"></i>
+
+        </a>
+
+        <span class="icon-label">
+          TikTok
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn wa"
+          href="https://wa.me/message/K4X7BQ7OUPKBN1"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <i class="fa-brands fa-whatsapp"></i>
+
+        </a>
+
+        <span class="icon-label">
+          WhatsApp
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn img-btn ip"
+          href="#"
+          onclick="return false;"
+        >
+
+          <img
+            src="instapay.png"
+            alt="InstaPay"
+          >
+
+        </a>
+
+        <span class="icon-label">
+          InstaPay
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <button
+          class="icon-btn img-btn oc"
+          id="openOrange"
+          type="button"
+          title="Orange Cash"
+        >
+
+          <img
+            src="orange-cash.png"
+            alt="Orange Cash"
+          >
+
+        </button>
+
+        <span class="icon-label">
+          Orange Cash
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn maps"
+          href="https://maps.app.goo.gl/uiM1XAtjkcaSda1A7"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <i class="fa-solid fa-location-dot"></i>
+
+        </a>
+
+        <span class="icon-label">
+          Location
+        </span>
+
+      </div>
+
+
+      <div class="icon-wrap">
+
+        <a
+          class="icon-btn review"
+          href="https://maps.app.goo.gl/uiM1XAtjkcaSda1A7"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <i class="fa-solid fa-star"></i>
+
+        </a>
+
+        <span class="icon-label">
+          Review
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+      " Live Well. Feel the Aura "
+    </div>
+
+  </main>
+
+
+  <!-- Point Modal -->
+
+  <div
+    id="pointModal"
+    class="modal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modalBox"
+      role="dialog"
+      aria-modal="true"
+    >
+
+      <div class="modalHeader">
+
+        <h3>
+          استعلام النقاط
+        </h3>
+
+        <button
+          id="closePoint"
+          type="button"
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <label>
+        رقم الموبايل
+      </label>
+
+      <input
+        id="pointPhone"
+        type="tel"
+        placeholder="01012345678"
+      >
+
+
+      <label>
+        الكود
+      </label>
+
+      <input
+        id="pointCode"
+        type="text"
+        placeholder="الكود"
+      >
+
+
+      <button
+        id="pointCheck"
+        class="checkBtn"
+        type="button"
+      >
+
+        عرض النقاط
+
+      </button>
+
+
+      <div
+        class="pointsBox"
+        id="pointsBox"
+      >
+
+        <div class="pointsIcon">
+
+          <i class="fa-solid fa-star"></i>
+
+        </div>
+
+
+        <div class="pointsValue">
+
+          <span class="unit">
+            Point
+          </span>
+
+          <span id="pointsValue">
+            0
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="errorMsg"
+        id="errorMsg"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Orange Cash Modal -->
+
+  <div
+    id="orangeModal"
+    class="modal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modalBox"
+      role="dialog"
+      aria-modal="true"
+    >
+
+      <div class="modalHeader">
+
+        <h3>
+          الدفع عبر Orange Cash
+        </h3>
+
+        <button
+          id="closeOrange"
+          type="button"
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <div
+        class="infoBox"
+        style="text-align:center;"
+      >
+
+        <div
+          style="
+            font-size:13px;
+            color:#ccc;
+            margin-bottom:6px;
+          "
+        >
+
+          رقم التحويل
+
+        </div>
+
+
+        <div
+          id="orangeNumber"
+          style="
+            font-size:22px;
+            font-weight:900;
+            letter-spacing:1px;
+            color:#d4af37;
+          "
+        >
+
+          01282341335
+
+        </div>
+
+
+        <button
+          id="copyOrange"
+          class="checkBtn"
+          type="button"
+          style="margin-top:12px;"
+        >
+
+          نسخ الرقم
+
+        </button>
+
+
+        <div
+          id="copyMsg"
+          style="
+            margin-top:10px;
+            font-size:13px;
+            color:#9be7a2;
+            display:none;
+          "
+        >
+
+          ✅ تم نسخ الرقم
+
+        </div>
+
+
+        <hr
+          style="
+            border:0;
+            border-top:1px solid rgba(255,255,255,.12);
+            margin:14px 0;
+          "
+        >
+
+
+        <div
+          style="
+            text-align:right;
+            color:#ddd;
+            font-size:14px;
+            line-height:1.7;
+          "
+        >
+
+          <div
+            style="
+              font-weight:800;
+              color:#d4af37;
+              margin-bottom:6px;
+            "
+          >
+
+            خطوات التحويل:
+
+          </div>
+
+
+          <div>
+            1) افتح تطبيق <b>Orange Cash</b>.
+          </div>
+
+          <div>
+            2) اختار <b>تحويل / Send Money</b>.
+          </div>
+
+          <div>
+            3) الصق رقم التحويل بالأعلى.
+          </div>
+
+          <div>
+            4) اكتب المبلغ المطلوب ثم أكد العملية.
+          </div>
+
+
+          <div
+            style="
+              margin-top:8px;
+              color:#ccc;
+              font-size:12px;
+            "
+          >
+
+            * لو احتجت مساعدة، تواصل مع الصيدلية
+            (01286644416)
+            قم بارسال رقم العملية/الإيصال.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    var API_URL =
+      "https://script.google.com/macros/s/AKfycbwit3vE8cuEeEIO6UDTTWLNw5c8Tf6xKL5yuHzdLelkLVzb_ATWlaKTypk5TizWGtZGrA/exec";
+
+
+    var modal =
+      document.getElementById("pointModal");
+
+    var pointsBox =
+      document.getElementById("pointsBox");
+
+    var pointsValue =
+      document.getElementById("pointsValue");
+
+    var errorMsg =
+      document.getElementById("errorMsg");
+
+    var pointPhone =
+      document.getElementById("pointPhone");
+
+    var pointCode =
+      document.getElementById("pointCode");
+
+
+    document
+      .getElementById("openPoint")
+      .onclick = function () {
+
+        modal.style.display = "flex";
+
+        pointsBox.style.display = "none";
+
+        pointsBox.classList.remove("show");
+
+        errorMsg.textContent = "";
+
+        pointPhone.value = "";
+
+        pointCode.value = "";
+
+      };
+
+
+    document
+      .getElementById("closePoint")
+      .onclick = function () {
+
+        modal.style.display = "none";
+
+      };
+
+
+    modal.addEventListener(
+      "click",
+      function (e) {
+
+        if (e.target === modal) {
+
+          modal.style.display = "none";
+
+        }
+
+      }
+    );
+
+
+    function jsonpRequest(url, params) {
+
+      return new Promise(
+        function (resolve, reject) {
+
+          var cb =
+            "cb_" +
+            Math.random()
+              .toString(36)
+              .slice(2);
+
+
+          var script =
+            document.createElement("script");
+
+
+          var query = [];
+
+
+          params.callback = cb;
+
+
+          Object.keys(params)
+            .forEach(
+              function (key) {
+
+                query.push(
+                  encodeURIComponent(key) +
+                  "=" +
+                  encodeURIComponent(params[key])
+                );
+
+              }
+            );
+
+
+          script.src =
+            url +
+            "?" +
+            query.join("&");
+
+
+          function cleanup() {
+
+            try {
+
+              delete window[cb];
+
+            } catch (e) {}
+
+
+            if (script.parentNode) {
+
+              script.parentNode
+                .removeChild(script);
+
+            }
+
+          }
+
+
+          window[cb] =
+            function (data) {
+
+              cleanup();
+
+              resolve(data);
+
+            };
+
+
+          script.onerror =
+            function () {
+
+              cleanup();
+
+              reject(
+                new Error("network")
+              );
+
+            };
+
+
+          document.body
+            .appendChild(script);
+
+        }
+      );
+
+    }
+
+
+    document
+      .getElementById("pointCheck")
+      .onclick = function () {
+
+        pointsBox.style.display =
+          "none";
+
+        pointsBox.classList
+          .remove("show");
+
+        errorMsg.textContent = "";
+
+
+        if (
+          !pointPhone.value ||
+          !pointCode.value
+        ) {
+
+          errorMsg.textContent =
+            "من فضلك اكتب رقم الموبايل والكود.";
+
+          return;
+
+        }
+
+
+        errorMsg.textContent =
+          "جارٍ الاستعلام...";
+
+
+        jsonpRequest(
+          API_URL,
+          {
+            phone:
+              pointPhone.value.trim(),
+
+            code:
+              pointCode.value.trim()
+          }
+        )
+
+        .then(
+          function (data) {
+
+            if (data.ok) {
+
+              errorMsg.textContent = "";
+
+              pointsValue.textContent =
+                data.points;
+
+
+              pointsBox.style.display =
+                "flex";
+
+
+              pointsBox.classList
+                .remove("show");
+
+
+              void pointsBox.offsetWidth;
+
+
+              pointsBox.classList
+                .add("show");
+
+            } else {
+
+              errorMsg.textContent =
+                data.message ||
+                "الرقم أو الكود غير صحيح.";
+
+            }
+
+          }
+        )
+
+        .catch(
+          function () {
+
+            errorMsg.textContent =
+              "تعذر الاتصال بالخدمة.";
+
+          }
+        );
+
+      };
+
+
+    var orangeModal =
+      document.getElementById(
+        "orangeModal"
+      );
+
+
+    var copyMsg =
+      document.getElementById(
+        "copyMsg"
+      );
+
+
+    var orangeNumber =
+      document.getElementById(
+        "orangeNumber"
+      );
+
+
+    document
+      .getElementById("openOrange")
+      .onclick = function () {
+
+        orangeModal.style.display =
+          "flex";
+
+        copyMsg.style.display =
+          "none";
+
+      };
+
+
+    document
+      .getElementById("closeOrange")
+      .onclick = function () {
+
+        orangeModal.style.display =
+          "none";
+
+      };
+
+
+    orangeModal.addEventListener(
+      "click",
+      function (e) {
+
+        if (e.target === orangeModal) {
+
+          orangeModal.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+
+    document
+      .getElementById("copyOrange")
+      .onclick = function () {
+
+        var text =
+          orangeNumber
+            .textContent
+            .trim();
+
+
+        if (
+          navigator.clipboard &&
+          window.isSecureContext
+        ) {
+
+          navigator.clipboard
+            .writeText(text)
+            .then(showCopied)
+            .catch(fallbackCopy);
+
+        } else {
+
+          fallbackCopy();
+
+        }
+
+
+        function fallbackCopy() {
+
+          var textarea =
+            document.createElement(
+              "textarea"
+            );
+
+
+          textarea.value = text;
+
+          textarea.style.position =
+            "fixed";
+
+          textarea.style.opacity =
+            "0";
+
+
+          document.body
+            .appendChild(textarea);
+
+
+          textarea.focus();
+
+          textarea.select();
+
+
+          try {
+
+            document.execCommand(
+              "copy"
+            );
+
+            showCopied();
+
+          } catch (e) {
+
+            alert(
+              "انسخ الرقم يدويًا."
+            );
+
+          }
+
+
+          document.body
+            .removeChild(textarea);
+
+        }
+
+
+        function showCopied() {
+
+          copyMsg.style.display =
+            "block";
+
+
+          setTimeout(
+            function () {
+
+              copyMsg.style.display =
+                "none";
+
+            },
+            1600
+          );
+
+        }
+
+      };
+
+  </script>
+
+</body>
+</html>
